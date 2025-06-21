@@ -29,9 +29,7 @@ A cyberpunk-inspired personal portfolio website showcasing my journey.
 - Improved mobile compatibility
 
 
-##  Contact
-
-**Lucas Zhang** 
+##  Contact Me
 
 -  **Email:** [lucaszhang1118@gmail.com](mailto:lucaszhang1118@gmail.com)
 -  **GitHub:** [github.com/LucasZhang3](https://github.com/LucasZhang3)
