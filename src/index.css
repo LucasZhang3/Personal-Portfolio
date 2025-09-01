@@ -1,0 +1,207 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 13 13 13;
+    --foreground: 0 255 204;
+    
+    --card: 26 26 26;
+    --card-foreground: 0 255 204;
+    
+    --popover: 13 13 13;
+    --popover-foreground: 0 255 204;
+    
+    --primary: 0 255 204;
+    --primary-foreground: 13 13 13;
+    
+    --secondary: 255 0 102;
+    --secondary-foreground: 255 255 255;
+    
+    --muted: 38 38 38;
+    --muted-foreground: 163 163 163;
+    
+    --accent: 255 204 0;
+    --accent-foreground: 13 13 13;
+    
+    --destructive: 255 0 102;
+    --destructive-foreground: 255 255 255;
+    
+    --border: 51 51 51;
+    --input: 51 51 51;
+    --ring: 0 255 204;
+    
+    --radius: 0.25rem;
+    
+    --cyber-green: 57 255 20;
+    --cyber-blue: 0 255 204;
+    --cyber-pink: 255 0 102;
+    --cyber-yellow: 255 204 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-mono;
+    background-color: rgb(13, 13, 13);
+    color: rgb(0, 255, 204);
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: hidden;
+  }
+  
+  /* CRT Scanlines Effect */
+  .crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 204, 0.03) 2px,
+      rgba(0, 255, 204, 0.03) 4px
+    );
+    animation: scanlines 0.1s linear infinite;
+  }
+  
+  /* Terminal cursor blink */
+  .cursor-blink {
+    animation: blink 1s infinite;
+  }
+  
+  /* Glitch effect */
+  .glitch {
+    position: relative;
+  }
+  
+  .glitch:hover::before,
+  .glitch:hover::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch:hover::before {
+    animation: glitch-1 0.3s infinite;
+    color: rgb(255, 0, 102);
+    z-index: -1;
+  }
+  
+  .glitch:hover::after {
+    animation: glitch-2 0.3s infinite;
+    color: rgb(0, 255, 204);
+    z-index: -2;
+  }
+  
+  /* Typing animation */
+  .typing {
+    border-right: 2px solid rgb(0, 255, 204);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .text-cyber-green {
+    color: rgb(57, 255, 20);
+  }
+  
+  .text-cyber-blue {
+    color: rgb(0, 255, 204);
+  }
+  
+  .text-cyber-pink {
+    color: rgb(255, 0, 102);
+  }
+  
+  .text-cyber-yellow {
+    color: rgb(255, 204, 0);
+  }
+  
+  .bg-cyber-dark {
+    background-color: rgb(13, 13, 13);
+  }
+  
+  .bg-cyber-card {
+    background-color: rgb(26, 26, 26);
+  }
+  
+  .border-cyber {
+    border-color: rgb(0, 255, 204);
+  }
+  
+  .shadow-cyber {
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+  }
+  
+  .glow {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+@keyframes glitch-1 {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-2 {
+  0% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-typing {
+  animation: typing 3s steps(40, end);
+}
